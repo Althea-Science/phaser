@@ -47,5 +47,9 @@ module Phaser
       attributes[:name]
     end
 
+    def data_type
+      attributes[:data_type]
+    end
+
   end
 end
