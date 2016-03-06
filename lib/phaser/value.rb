@@ -3,30 +3,34 @@ require 'json'
 
 
 module Phaser
-  class Chart
+  class Value
 
     class << self
 
-      API_URL = 'http://localhost:3000/charts'
+      API_URL = 'http://localhost:3000/values'
 
       def all
         response = connection.get(API_URL)
-        charts   = JSON.parse(response.body)
-        charts.map { |chart| new(chart) }
+        values   = JSON.parse(response.body)
+        values.map { |value| new(value) }
       end
 
       def wrap(set)
-        set.map { |attempt| new(attempt) }
+        set.map { |value| new(value) }
       end
 
       def find(id)
         response = connection.get("#{API_URL}/#{id}")
-        chart = JSON.parse(response.body)
-        new(chart)
+        value = JSON.parse(response.body)
+        new(value)
       end
 
       def create(attributes)
         connection.post(API_URL, attributes)
+      end
+
+      def update(id, attributes)
+        connection.put("#{API_URL}/#{id}", attributes)
       end
 
       def destroy(id)
@@ -49,12 +53,16 @@ module Phaser
       attributes[:id]
     end
 
-    def patient
-      Phaser::Patient.new(attributes[:patient])
+    def data
+      attributes[:data]
     end
 
-    def attempt
-      Phaser::Attempt.new(attributes[:attempt])
+    def parameter_id
+      attributes[:parameter_id]
+    end
+
+    def attempt_id
+      attributes[:attempt_id]
     end
 
   end

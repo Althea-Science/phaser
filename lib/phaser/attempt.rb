@@ -55,5 +55,9 @@ module Phaser
       Phaser::Phase.new(attributes[:phase])
     end
 
+    def values
+      Phaser::Value.wrap(attributes[:values])
+    end
+
   end
 end
