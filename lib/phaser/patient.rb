@@ -61,6 +61,10 @@ module Phaser
       attempt_repo.destroy_for(self, id)
     end
 
+    def move_attempt_to_phase(id, phase_id)
+      attempt_repo.move_to_phase(self, id, phase_id)
+    end
+
     private
 
     def attempt_repo

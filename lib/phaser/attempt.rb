@@ -27,6 +27,10 @@ module Phaser
         connection.delete("#{API_URL}/#{patient.id}/attempts/#{id}")
       end
 
+      def move_to_phase(patient, id, attributes)
+        connection.put("#{API_URL}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
+      end
+
       def connection
         @connection ||= Faraday
       end
