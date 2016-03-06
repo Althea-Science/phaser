@@ -15,6 +15,10 @@ module Phaser
         charts.map { |chart| new(chart) }
       end
 
+      def wrap(set)
+        set.map { |attempt| new(attempt) }
+      end
+
       def find(id)
         response = connection.get("#{API_URL}/#{id}")
         chart = JSON.parse(response.body)
@@ -43,6 +47,10 @@ module Phaser
 
     def id
       attributes[:id]
+    end
+
+    def patient
+      Phaser::Patient.new(attributes[:patient])
     end
 
   end

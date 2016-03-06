@@ -43,5 +43,17 @@ module Phaser
       attributes[:id]
     end
 
+    def count
+      attributes[:count]
+    end
+
+    def patient
+      Phaser::Patient.new(attributes[:patient])
+    end
+
+    def phase
+      Phaser::Phase.new(attributes[:phase])
+    end
+
   end
 end

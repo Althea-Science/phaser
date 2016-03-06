@@ -53,8 +53,16 @@ module Phaser
       attributes[:order]
     end
 
+    def attempts
+      attempt_repo.wrap(attributes[:attempts])
+    end
+
     def parameters
       parameter_repo.wrap(attributes[:parameters])
+    end
+
+    def charts
+      chart_repo.wrap(attributes[:charts])
     end
 
     def create_parameter(attributes)
@@ -69,6 +77,14 @@ module Phaser
 
     def parameter_repo
       @parameter_repo || Phaser::Parameter
+    end
+
+    def attempt_repo
+      @attempt_repo || Phaser::Attempt
+    end
+
+    def chart_repo
+      @attempt_repo || Phaser::Chart
     end
 
   end
