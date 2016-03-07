@@ -52,7 +52,7 @@ module Phaser
       end
 
       def new_empty_item
-        Object.const_get("Empty#{klass_name}").new
+        Object.const_get("Phaser::Empty#{klass_name}").new
       end
 
       def klass_name
