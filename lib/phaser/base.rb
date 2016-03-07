@@ -48,11 +48,15 @@ module Phaser
       end
 
       def repo_name
-        @repo_name ||= ("#{self.name.split('::')[1]}s").downcase
+        @repo_name ||= ("#{class_name}s").downcase
       end
 
       def new_empty_item
-        Object.const_get("Empty#{repo_name.capitalize}").new
+        Object.const_get("Empty#{class_name}").new
+      end
+
+      def class_name
+        self.name.split('::')[1]}
       end
 
     end
