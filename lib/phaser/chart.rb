@@ -20,4 +20,8 @@ module Phaser
     end
 
   end
+
+  class EmptyChart
+  end
+
 end

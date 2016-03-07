@@ -18,9 +18,13 @@ module Phaser
       end
 
       def find(id)
-        response = connection.get("#{repo_url}/#{id}")
-        item     = JSON.parse(response.body)
-        new(item)
+        if id.nil?
+          new_empty_item
+        else
+          response = connection.get("#{repo_url}/#{id}")
+          item     = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def create(attributes)
@@ -45,6 +49,10 @@ module Phaser
 
       def repo_name
         @repo_name ||= ("#{self.name.split('::')[1]}s").downcase
+      end
+
+      def new_empty_item
+        Object.const_get("Empty#{repo_name.capitalize}").new
       end
 
     end

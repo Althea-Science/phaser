@@ -54,4 +54,8 @@ module Phaser
     end
 
   end
+
+  class EmptyAttempt
+  end
+
 end

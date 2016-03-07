@@ -42,4 +42,8 @@ module Phaser
     end
 
   end
+
+  class EmptyParameter
+  end
+
 end

@@ -38,4 +38,8 @@ module Phaser
     end
 
   end
+
+  class EmptyPatient
+  end
+
 end

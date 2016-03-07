@@ -24,4 +24,8 @@ module Phaser
     end
 
   end
+
+  class EmptyValue
+  end
+
 end
