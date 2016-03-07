@@ -66,7 +66,7 @@ module Phaser
     end
 
     def class_name
-      class.name.downcase
+      self.class.name.downcase
     end
 
   end
@@ -78,7 +78,7 @@ module Phaser
     end
 
     def class_name
-      class.name[5..-1].downcase
+      self.class.name[5..-1].downcase
     end
 
   end
