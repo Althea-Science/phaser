@@ -1,39 +1,5 @@
-require 'faraday'
-require 'json'
-
-
 module Phaser
-  class Phase
-
-    class << self
-
-      API_URL = 'http://localhost:3000/phases'
-
-      def all
-        response = connection.get(API_URL)
-        phases   = JSON.parse(response.body)
-        phases.map { |phase| new(phase) }
-      end
-
-      def find(id)
-        response = connection.get("#{API_URL}/#{id}")
-        phase = JSON.parse(response.body)
-        new(phase)
-      end
-
-      def create(attributes)
-        connection.post(API_URL, attributes)
-      end
-
-      def destroy(id)
-        connection.delete("#{API_URL}/#{id}")
-      end
-
-      def connection
-        @connection ||= Faraday
-      end
-
-    end
+  class Phase < Base
 
     attr_reader :attributes
 

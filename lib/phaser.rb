@@ -1,9 +1,10 @@
 require "phaser/version"
 
 module Phaser
-  # Your code goes here...
+  API_URL = 'http://localhost:3000'
 end
 
+require 'phaser/base'
 require 'phaser/phase'
 require 'phaser/parameter'
 require 'phaser/patient'

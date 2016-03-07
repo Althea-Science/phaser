@@ -1,38 +1,28 @@
-require 'faraday'
-require 'json'
-
-
 module Phaser
-  class Attempt
+  class Attempt < Base
 
     class << self
 
-      API_URL = 'http://localhost:3000/patients'
+      def repo_url
+        "#{API_URL}/patients"
+      end
 
       def all_for(patient)
-        response = connection.get("#{API_URL}/#{patient.id}/attempts")
+        response = connection.get("#{repo_url}/#{patient.id}/attempts")
         patients = JSON.parse(response.body)
         patients.map { |attempt| new(attempt) }
       end
 
-      def wrap(set)
-        set.map { |attempt| new(attempt) }
-      end
-
       def create_for(patient, attributes)
-        connection.post("#{API_URL}/#{patient.id}/attempts", attributes)
+        connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
       end
 
       def destroy_for(patient, id)
-        connection.delete("#{API_URL}/#{patient.id}/attempts/#{id}")
+        connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
       end
 
       def move_to_phase(patient, id, attributes)
-        connection.put("#{API_URL}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
-      end
-
-      def connection
-        @connection ||= Faraday
+        connection.put("#{repo_url}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
       end
 
     end

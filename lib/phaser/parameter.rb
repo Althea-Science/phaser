@@ -1,34 +1,24 @@
-require 'faraday'
-require 'json'
-
-
 module Phaser
-  class Parameter
+  class Parameter < Base
 
     class << self
 
-      API_URL = 'http://localhost:3000/phases'
+      def repo_url
+        "#{API_URL}/phases"
+      end
 
       def all_for(phase)
-        response     = connection.get("#{API_URL}/#{phase.id}/parameters")
+        response     = connection.get("#{repo_url}/#{phase.id}/parameters")
         parameters   = JSON.parse(response.body)
         parameters.map { |parameter| new(parameter) }
       end
 
-      def wrap(set)
-        set.map { |parameter| new(parameter) }
-      end
-
       def create_for(phase, attributes)
-        connection.post("#{API_URL}/#{phase.id}/parameters", attributes)
+        connection.post("#{repo_url}/#{phase.id}/parameters", attributes)
       end
 
       def destroy_for(phase, id)
-        connection.delete("#{API_URL}/#{phase.id}/parameters/#{id}")
-      end
-
-      def connection
-        @connection ||= Faraday
+        connection.delete("#{repo_url}/#{phase.id}/parameters/#{id}")
       end
 
     end
