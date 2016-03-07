@@ -61,6 +61,26 @@ module Phaser
 
     end
 
+    def to_partial_path
+      "#{class_name}s/#{class_name}"
+    end
+
+    def class_name
+      class.name.downcase
+    end
+
+  end
+
+  class EmptyBase
+
+    def to_partial_path
+      "#{class_name}s/empty_#{class_name}"
+    end
+
+    def class_name
+      class.name.downcase[5..-1]
+    end
+
   end
 
 end

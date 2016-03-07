@@ -21,7 +21,7 @@ module Phaser
 
   end
 
-  class EmptyChart
+  class EmptyChart < EmptyBase
 
     def to_partial_path
       'charts/empty_chart'
