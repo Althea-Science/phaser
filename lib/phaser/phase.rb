@@ -23,12 +23,24 @@ module Phaser
       attributes[:in_sequence]
     end
 
+    def active_parameters
+      parameters.map { |parameter| parameter if parameter.active? }
+    end
+
+    def inactive_parameters
+      parameters.map { |parameter| parameter unless parameter.active? }
+    end
+
+    def active_parameter_percentage
+      "#{((active_parameters / inactive_parameters.to_f) * 100).round}%"
+    end
+
     def attempts
       attempt_repo.wrap(attributes[:attempts])
     end
 
     def parameters
-      parameter_repo.wrap(attributes[:parameters])
+      @paramters ||= parameter_repo.wrap(attributes[:parameters])
     end
 
     def charts
