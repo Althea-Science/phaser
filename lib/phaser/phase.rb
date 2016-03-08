@@ -19,6 +19,10 @@ module Phaser
       attributes[:order]
     end
 
+    def in_sequence?
+      attributes[:in_sequence]
+    end
+
     def attempts
       attempt_repo.wrap(attributes[:attempts])
     end
