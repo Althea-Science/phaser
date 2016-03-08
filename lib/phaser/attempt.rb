@@ -41,6 +41,10 @@ module Phaser
       attributes[:count]
     end
 
+    def date_started
+      attributes[:date_started]
+    end
+
     def patient
       Phaser::Patient.new(attributes[:patient])
     end
