@@ -45,7 +45,7 @@ module Phaser
       attributes[:description]
     end
 
-    def active
+    def active?
       attributes[:active]
     end
 
