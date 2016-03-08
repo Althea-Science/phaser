@@ -32,7 +32,7 @@ module Phaser
     end
 
     def active_parameter_percentage
-      "#{((active_parameters / inactive_parameters.to_f) * 100).round}%"
+      "#{((active_parameters.count / inactive_parameters.count.to_f) * 100).round}%"
     end
 
     def attempts
