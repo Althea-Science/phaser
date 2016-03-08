@@ -41,6 +41,10 @@ module Phaser
       attributes[:data_type]
     end
 
+    def description
+      attributes[:description]
+    end
+
   end
 
   class EmptyParameter
