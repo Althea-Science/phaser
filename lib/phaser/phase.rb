@@ -32,6 +32,7 @@ module Phaser
     end
 
     def active_parameter_percentage
+      return "0%" if parameters.count == 0
       "#{((active_parameters.count / parameters.count.to_f) * 100).round}%"
     end
 
