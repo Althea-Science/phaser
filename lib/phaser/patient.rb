@@ -15,6 +15,10 @@ module Phaser
       attributes[:name]
     end
 
+    def age
+      attributes[:age]
+    end
+
     def attempts
       attempt_repo.wrap(attributes[:attempts])
     end
