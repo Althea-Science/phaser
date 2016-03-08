@@ -19,6 +19,10 @@ module Phaser
       Phaser::Attempt.new(attributes[:attempt])
     end
 
+    def phase
+      Phaser::Phase.new(attributes[:phase])
+    end
+
   end
 
   class EmptyChart < EmptyBase
