@@ -81,6 +81,10 @@ module Phaser
       self.class.name.split('::')[1][5..-1].downcase
     end
 
+    def id
+      nil
+    end
+
   end
 
 end
