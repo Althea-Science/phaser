@@ -1,6 +1,18 @@
 module Phaser
   class Phase < Base
 
+    class << self
+
+      def sequential
+        all.map { |phase| phase if phase.in_sequence? }.compact
+      end
+
+      def nonsequential
+        all.map { |phase| phase unless phase.in_sequence? }.compact
+      end
+
+    end
+
     attr_reader :attributes
 
     def initialize(attributes)
