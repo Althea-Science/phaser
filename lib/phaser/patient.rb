@@ -19,6 +19,10 @@ module Phaser
       @birthday ||= DateTime.parse(attributes[:birthday])
     end
 
+    def display_birthday
+      birthday.strftime("%-b %-d, %Y")
+    end
+
     def attempts
       attempt_repo.wrap(attributes[:attempts])
     end
