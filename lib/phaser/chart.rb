@@ -1,6 +1,14 @@
 module Phaser
   class Chart < Base
 
+    class << self
+
+      def create_multiple(attributes)
+        connection.post("#{repo_url}/multi", attributes)
+      end
+
+    end
+
     attr_reader :attributes
 
     def initialize(attributes)
