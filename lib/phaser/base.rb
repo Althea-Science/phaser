@@ -8,9 +8,11 @@ module Phaser
     class << self
 
       def all
-        response = connection.get(repo_url)
-        items    = JSON.parse(response.body)
-        items.map { |item| new(item) }
+        @items ||= (
+          response = connection.get(repo_url)
+          items    = JSON.parse(response.body)
+          items.map { |item| new(item) }
+        )
       end
 
       def wrap(set)
