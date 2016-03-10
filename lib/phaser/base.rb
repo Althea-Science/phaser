@@ -32,7 +32,7 @@ module Phaser
       end
 
       def update(id, attributes)
-        connection.put("#{API_URL}/#{id}", attributes)
+        connection.put("#{repo_url}/#{id}", attributes)
       end
 
       def destroy(id)

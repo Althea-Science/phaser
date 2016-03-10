@@ -15,8 +15,8 @@ module Phaser
       attributes[:name]
     end
 
-    def age
-      attributes[:age]
+    def birthday
+      @birthday ||= DateTime.parse(attributes[:birthday])
     end
 
     def attempts

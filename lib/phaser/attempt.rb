@@ -45,16 +45,28 @@ module Phaser
       attributes[:date_started]
     end
 
+    def created_at
+      @created_at ||= DateTime.parse(attributes[:created_at])
+    end
+
+    def patient_age
+      return nil if patient.birthday.nil?
+
+      dob = patient.birthday
+      now = created_at
+      now.year - dob.year - ((now.month > dob.month || (now.month == dob.month && now.day >= dob.day)) ? 0 : 1)
+    end
+
     def patient
-      Phaser::Patient.new(attributes[:patient])
+      @patient ||= Phaser::Patient.new(attributes[:patient])
     end
 
     def phase
-      Phaser::Phase.new(attributes[:phase])
+      @phase ||= Phaser::Phase.new(attributes[:phase])
     end
 
     def values
-      Phaser::Value.wrap(attributes[:values])
+      @values ||= Phaser::Value.wrap(attributes[:values])
     end
 
   end
