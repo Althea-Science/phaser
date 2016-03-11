@@ -13,6 +13,12 @@ module Phaser
         patients.map { |attempt| new(attempt) }
       end
 
+      def search(query)
+        response = connection.get("#{API_URL}/attempt-search/?query=#{query}")
+        patients = JSON.parse(response.body)
+        patients.map { |attempt| new(attempt) }
+      end
+
       def create_for(patient, attributes)
         connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
       end
