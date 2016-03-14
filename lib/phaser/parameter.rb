@@ -4,7 +4,7 @@ module Phaser
     class << self
 
       def repo_url
-        "#{API_URL}/phases"
+        "#{Phaser.api_url}/phases"
       end
 
       def all_for(phase)

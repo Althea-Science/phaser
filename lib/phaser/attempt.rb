@@ -4,7 +4,7 @@ module Phaser
     class << self
 
       def repo_url
-        "#{API_URL}/patients"
+        "#{Phaser.api_url}/patients"
       end
 
       def all_for(patient)
@@ -14,7 +14,7 @@ module Phaser
       end
 
       def search(query)
-        response = connection.get("#{API_URL}/attempt-search/?query=#{query}")
+        response = connection.get("#{Phaser.api_url}/attempt-search/?query=#{query}")
         patients = JSON.parse(response.body)
         patients.map { |attempt| new(attempt) }
       end

@@ -44,7 +44,7 @@ module Phaser
       end
 
       def repo_url
-        @repo_url ||= "#{API_URL}/#{repo_name}"
+        @repo_url ||= "#{Phaser.api_url}/#{repo_name}"
       end
 
       def repo_name
