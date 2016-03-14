@@ -27,8 +27,8 @@ module Phaser
       attributes[:title]
     end
 
-    def order
-      attributes[:order]
+    def position
+      attributes[:position]
     end
 
     def in_sequence?
