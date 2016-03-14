@@ -2,6 +2,8 @@ require "configuration"
 require "phaser/version"
 
 module Phaser
+  extend Configuration
+
   define_setting :api_url, 'http://localhost:3000'
 end
 
