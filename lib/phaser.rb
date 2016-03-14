@@ -1,3 +1,4 @@
+require "configuration"
 require "phaser/version"
 
 module Phaser
