@@ -1,7 +1,7 @@
 require "phaser/version"
 
 module Phaser
-  API_URL = 'http://localhost:3000'
+  define_setting :API_URL, 'http://localhost:3000'
 end
 
 require 'phaser/base'
