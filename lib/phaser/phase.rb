@@ -64,6 +64,10 @@ module Phaser
       parameter_repo.create_for(self, attributes)
     end
 
+    def update_parameter(id, attributes)
+      parameter_repo.update_for(self, id, attributes)
+    end
+
     def destroy_parameter(id)
       parameter_repo.destroy_for(self, id)
     end

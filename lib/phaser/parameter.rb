@@ -17,6 +17,10 @@ module Phaser
         connection.post("#{repo_url}/#{phase.id}/parameters", attributes)
       end
 
+      def update_for(phase, id, attributes)
+        connection.post("#{repo_url}/#{phase.id}/parameters/#{id}", attributes)
+      end
+
       def destroy_for(phase, id)
         connection.delete("#{repo_url}/#{phase.id}/parameters/#{id}")
       end
