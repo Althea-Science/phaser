@@ -24,15 +24,13 @@ module Phaser
         if response.success?
           item = JSON.parse(response.body)
           new(item)
+        else
+          new_empty_item
         end
       end
 
       def destroy_for(patient, id)
-        response = connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        end
+        connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
       end
 
       def move_to_phase(patient, id, attributes)

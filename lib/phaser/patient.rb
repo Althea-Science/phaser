@@ -24,7 +24,7 @@ module Phaser
     end
 
     def attempts
-      attempt_repo.wrap(attributes[:attempts])
+      attempt_repo.wrap(attributes[:attempts], self)
     end
 
     def create_attempt(attributes)

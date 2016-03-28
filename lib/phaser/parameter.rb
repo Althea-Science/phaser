@@ -18,6 +18,8 @@ module Phaser
         if response.success?
           item = JSON.parse(response.body)
           new(item)
+        else
+          new_empty_item
         end
       end
 
@@ -26,6 +28,8 @@ module Phaser
         if response.success?
           item = JSON.parse(response.body)
           new(item)
+        else
+          new_empty_item
         end
       end
 
