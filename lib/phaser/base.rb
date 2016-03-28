@@ -28,7 +28,11 @@ module Phaser
       end
 
       def create(attributes)
-        connection.post(repo_url, attributes)
+        response = connection.post(repo_url, attributes)
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def update(id, attributes)
