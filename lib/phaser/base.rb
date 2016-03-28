@@ -112,9 +112,9 @@ module Phaser
 
     def create(attributes)
       if caller.nil?
-        collected_class.create(attributes)
+        self.collected_class.create(attributes)
       else
-        collected_class.create_for(caller, attributes)
+        self.collected_class.create_for(caller, attributes)
       end
     end
 
