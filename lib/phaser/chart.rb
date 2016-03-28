@@ -36,7 +36,7 @@ module Phaser
   class EmptyChart < EmptyBase
   end
 
-  class AttemptCollection < BaseCollection
+  class ChartCollection < BaseCollection
 
     def collected_class
       Phaser::Chart
