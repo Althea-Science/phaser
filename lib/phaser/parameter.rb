@@ -59,6 +59,11 @@ module Phaser
   end
 
   class ParameterCollection < BaseCollection
+
+    def collected_class
+      Phaser::Parameter
+    end
+
   end
 
 end
