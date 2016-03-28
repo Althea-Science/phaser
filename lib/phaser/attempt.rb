@@ -8,25 +8,16 @@ module Phaser
       end
 
       def all_for(patient)
-        response = connection.get("#{repo_url}/#{patient.id}/attempts")
-        patients = JSON.parse(response.body)
-        patients.map { |attempt| new(attempt) }
+        fetch_set("#{repo_url}/#{patient.id}/attempts")
       end
 
       def search(query)
-        response = connection.get("#{Phaser.api_url}/attempt-search/?query=#{query}")
-        patients = JSON.parse(response.body)
-        patients.map { |attempt| new(attempt) }
+        fetch_set("#{Phaser.api_url}/attempt-search/?query=#{query}")
       end
 
       def create_for(patient, attributes)
         response = connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        else
-          new_empty_item
-        end
+        new_for(response)
       end
 
       def destroy_for(patient, id)
@@ -34,7 +25,8 @@ module Phaser
       end
 
       def move_to_phase(patient, id, attributes)
-        connection.put("#{repo_url}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
+        response = connection.put("#{repo_url}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
+        new_for(response)
       end
 
     end

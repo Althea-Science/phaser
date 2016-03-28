@@ -8,29 +8,17 @@ module Phaser
       end
 
       def all_for(phase)
-        response     = connection.get("#{repo_url}/#{phase.id}/parameters")
-        parameters   = JSON.parse(response.body)
-        parameters.map { |parameter| new(parameter) }
+        fetch_set("#{repo_url}/#{phase.id}/parameters")
       end
 
       def create_for(phase, attributes)
         response = connection.post("#{repo_url}/#{phase.id}/parameters", attributes)
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        else
-          new_empty_item
-        end
+        new_for(response)
       end
 
       def update_for(phase, id, attributes)
         response = connection.put("#{repo_url}/#{phase.id}/parameters/#{id}", attributes)
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        else
-          new_empty_item
-        end
+        new_for(response)
       end
 
       def destroy_for(phase, id)

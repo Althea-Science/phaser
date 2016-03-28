@@ -7,10 +7,8 @@ module Phaser
 
     class << self
 
-      def all(caller = nil)
-        response = connection.get(repo_url)
-        items    = JSON.parse(response.body).map { |item| new(item) }
-        collection.new(items, caller)
+      def all
+        fetch_set(api_url)
       end
 
       def wrap(set, caller = nil)
@@ -19,29 +17,32 @@ module Phaser
       end
 
       def find(id)
-        if id.nil?
-          new_empty_item
-        else
-          response = connection.get("#{repo_url}/#{id}")
-          item     = JSON.parse(response.body)
-          new(item)
-        end
+        if id.nil? ? new_empty_item : fetch_one("#{repo_url}/#{id}")
       end
 
       def create(attributes)
         response = connection.post(repo_url, attributes)
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        end
+        new_for(response)
       end
 
       def update(id, attributes)
         response = connection.put("#{repo_url}/#{id}", attributes)
-        if response.success?
-          item = JSON.parse(response.body)
-          new(item)
-        end
+        new_for(response)
+      end
+
+      def fetch_set(url, caller = nil)
+        response = connection.get(url)
+        items    = JSON.parse(response.body).map { |item| new(item) }
+        collection.new(items, caller)
+      end
+
+      def fetch_one(url)
+        response = connection.get(url)
+        new_for(response)
+      end
+
+      def new_for(response)
+        if response.success? ? new(JSON.parse(response.body)) : new_empty_item
       end
 
       def destroy(id)
