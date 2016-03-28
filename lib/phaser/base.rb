@@ -8,7 +8,7 @@ module Phaser
     class << self
 
       def all
-        fetch_set(api_url)
+        fetch_set(repo_url)
       end
 
       def wrap(set, caller = nil)
