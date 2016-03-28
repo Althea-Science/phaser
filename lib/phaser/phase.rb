@@ -92,6 +92,7 @@ module Phaser
   end
 
   class PhaseCollection < BaseCollection
+
   end
 
 end

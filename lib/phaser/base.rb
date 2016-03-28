@@ -98,14 +98,27 @@ module Phaser
   class BaseCollection
     include Enumerable
 
-    attr_reader :set
+    attr_reader :set, :caller
 
-    def initialize(set)
-      @set = set
+    def initialize(set, caller = nil)
+      @set    = set
+      @caller = caller
     end
 
     def each
       set.map { |item| yield item }
+    end
+
+    def create(attributes)
+      if caller.nil?
+        collected_class.create(attributes)
+      else
+        collected_class.create_for(caller, attributes)
+      end
+    end
+
+    def collected_class
+      set.first.class
     end
 
   end
