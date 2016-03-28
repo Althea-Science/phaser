@@ -7,14 +7,15 @@ module Phaser
 
     class << self
 
-      def all
+      def all(caller = nil)
         response = connection.get(repo_url)
         items    = JSON.parse(response.body).map { |item| new(item) }
-        collection.new(items)
+        collection.new(items, caller)
       end
 
-      def wrap(set)
-        collection.new( set.map { |item| new(item) } )
+      def wrap(set, caller = nil)
+        items = set.map { |item| new(item) }
+        collection.new(items, caller)
       end
 
       def find(id)
@@ -100,7 +101,7 @@ module Phaser
 
     attr_reader :set, :caller
 
-    def initialize(set, caller = nil)
+    def initialize(set, caller)
       @set    = set
       @caller = caller
     end
