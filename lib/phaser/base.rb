@@ -14,7 +14,7 @@ module Phaser
       end
 
       def wrap(set)
-        set.map { |item| new(item) }
+        collection.new( set.map { |item| new(item) } )
       end
 
       def find(id)
@@ -61,6 +61,10 @@ module Phaser
 
       def class_name
         self.name.split('::')[1]
+      end
+
+      def collection
+        Collection
       end
 
     end
