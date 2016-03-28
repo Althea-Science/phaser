@@ -17,7 +17,7 @@ module Phaser
       end
 
       def find(id)
-        if id.nil? ? new_empty_item : fetch_one("#{repo_url}/#{id}")
+        id.nil? ? new_empty_item : fetch_one("#{repo_url}/#{id}")
       end
 
       def create(attributes)
@@ -42,7 +42,7 @@ module Phaser
       end
 
       def new_for(response)
-        if response.success? ? new(JSON.parse(response.body)) : new_empty_item
+        response.success? ? new(JSON.parse(response.body)) : new_empty_item
       end
 
       def destroy(id)
