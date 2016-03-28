@@ -93,6 +93,10 @@ module Phaser
 
   class PhaseCollection < BaseCollection
 
+    def collected_class
+      Phaser::Phase
+    end
+
   end
 
 end

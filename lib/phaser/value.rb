@@ -29,6 +29,11 @@ module Phaser
   end
 
   class ValueCollection < BaseCollection
+
+    def collected_class
+      Phaser::Value
+    end
+
   end
 
 end

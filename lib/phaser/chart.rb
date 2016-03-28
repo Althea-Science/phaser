@@ -37,6 +37,11 @@ module Phaser
   end
 
   class AttemptCollection < BaseCollection
+
+    def collected_class
+      Phaser::Chart
+    end
+
   end
 
 end

@@ -81,6 +81,11 @@ module Phaser
   end
 
   class AttemptCollection < BaseCollection
+
+    def collected_class
+      Phaser::Attempt
+    end
+
   end
 
 end

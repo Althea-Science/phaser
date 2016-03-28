@@ -51,6 +51,11 @@ module Phaser
   end
 
   class PatientCollection < BaseCollection
+
+    def collected_class
+      Phaser::Patient
+    end
+
   end
 
 end

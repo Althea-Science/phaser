@@ -37,7 +37,11 @@ module Phaser
       end
 
       def update(id, attributes)
-        connection.put("#{repo_url}/#{id}", attributes)
+        response = connection.put("#{repo_url}/#{id}", attributes)
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def destroy(id)
