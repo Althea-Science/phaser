@@ -14,5 +14,3 @@ require 'phaser/patient'
 require 'phaser/attempt'
 require 'phaser/chart'
 require 'phaser/value'
-require 'phaser/collection'
-

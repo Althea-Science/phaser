@@ -64,7 +64,7 @@ module Phaser
       end
 
       def collection
-        Collection
+        Object.const_get("#{class_name}Collection")
       end
 
     end
@@ -91,6 +91,21 @@ module Phaser
 
     def id
       nil
+    end
+
+  end
+
+  class BaseCollection
+    include Enumerable
+
+    attr_reader :set
+
+    def initialize(set)
+      @set = set
+    end
+
+    def each
+      set.map { |item| yield item }
     end
 
   end

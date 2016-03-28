@@ -25,7 +25,10 @@ module Phaser
 
   end
 
-  class EmptyValue
+  class EmptyValue < EmptyBase
+  end
+
+  class ValueCollection < BaseCollection
   end
 
 end

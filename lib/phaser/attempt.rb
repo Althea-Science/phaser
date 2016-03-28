@@ -77,7 +77,10 @@ module Phaser
 
   end
 
-  class EmptyAttempt
+  class EmptyAttempt < EmptyBase
+  end
+
+  class AttemptCollection < BaseCollection
   end
 
 end

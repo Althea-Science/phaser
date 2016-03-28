@@ -88,7 +88,10 @@ module Phaser
 
   end
 
-  class EmptyPhase
+  class EmptyPhase < EmptyBase
+  end
+
+  class PhaseCollection < BaseCollection
   end
 
 end

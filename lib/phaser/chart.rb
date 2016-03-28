@@ -36,4 +36,7 @@ module Phaser
   class EmptyChart < EmptyBase
   end
 
+  class AttemptCollection < BaseCollection
+  end
+
 end

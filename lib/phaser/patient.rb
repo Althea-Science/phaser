@@ -47,7 +47,10 @@ module Phaser
 
   end
 
-  class EmptyPatient
+  class EmptyPatient < EmptyBase
+  end
+
+  class PatientCollection < BaseCollection
   end
 
 end

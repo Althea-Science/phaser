@@ -55,7 +55,10 @@ module Phaser
 
   end
 
-  class EmptyParameter
+  class EmptyParameter < EmptyBase
+  end
+
+  class ParameterCollection < BaseCollection
   end
 
 end
