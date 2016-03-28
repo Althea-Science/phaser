@@ -53,7 +53,7 @@ module Phaser
     end
 
     def parameters
-      @paramters ||= parameter_repo.wrap(attributes[:parameters])
+      @paramters ||= parameter_repo.wrap(attributes[:parameters], self)
     end
 
     def charts
