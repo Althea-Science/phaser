@@ -64,7 +64,7 @@ module Phaser
       end
 
       def collection
-        Object.const_get("#{class_name}Collection")
+        Object.const_get("Phaser::#{class_name}Collection")
       end
 
     end
