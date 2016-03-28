@@ -9,8 +9,8 @@ module Phaser
 
       def all
         response = connection.get(repo_url)
-        items    = JSON.parse(response.body)
-        items.map { |item| new(item) }
+        items    = JSON.parse(response.body).map { |item| new(item) }
+        collection.new(items)
       end
 
       def wrap(set)
