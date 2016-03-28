@@ -14,11 +14,19 @@ module Phaser
       end
 
       def create_for(phase, attributes)
-        connection.post("#{repo_url}/#{phase.id}/parameters", attributes)
+        response = connection.post("#{repo_url}/#{phase.id}/parameters", attributes)
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def update_for(phase, id, attributes)
-        connection.put("#{repo_url}/#{phase.id}/parameters/#{id}", attributes)
+        response = connection.put("#{repo_url}/#{phase.id}/parameters/#{id}", attributes)
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def destroy_for(phase, id)

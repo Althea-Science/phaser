@@ -20,11 +20,19 @@ module Phaser
       end
 
       def create_for(patient, attributes)
-        connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
+        response = connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def destroy_for(patient, id)
-        connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
+        response = connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
+        if response.success?
+          item = JSON.parse(response.body)
+          new(item)
+        end
       end
 
       def move_to_phase(patient, id, attributes)
