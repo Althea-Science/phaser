@@ -45,8 +45,8 @@ module Phaser
       attributes[:count]
     end
 
-    def date_started
-      attributes[:date_started]
+    def start_date
+      attributes[:start_date]
     end
 
     def created_at
