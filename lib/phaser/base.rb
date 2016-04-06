@@ -76,7 +76,7 @@ module Phaser
     end
 
     def save
-      class.create(attributes)
+      self.class.create(attributes)
     end
 
     def to_partial_path
