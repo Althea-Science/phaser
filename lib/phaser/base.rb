@@ -75,6 +75,10 @@ module Phaser
 
     end
 
+    def save
+      class.create(attributes)
+    end
+
     def to_partial_path
       "#{class_name}s/#{class_name}"
     end
