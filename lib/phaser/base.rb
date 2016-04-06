@@ -115,6 +115,10 @@ module Phaser
       set.map { |item| yield item }
     end
 
+    def new(attributes)
+      collected_class.new(attributes)
+    end
+
     def create(attributes)
       if caller.nil?
         collected_class.create(attributes)
