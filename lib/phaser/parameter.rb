@@ -53,6 +53,10 @@ module Phaser
       attributes[:active]
     end
 
+    def values
+      Phaser::Value.wrap(attributes[:values], self)
+    end
+
   end
 
   class EmptyParameter < EmptyBase
