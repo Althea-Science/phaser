@@ -24,21 +24,21 @@ module Phaser
 
       def create(attributes)
         response = connection.post(repo_url, attributes) do |req|
-          req.headers['Authorization'] = "Token #{token}"
+          req.headers['Authorization'] = "Token #{self.token}"
         end
         new_for(response)
       end
 
       def update(id, attributes)
         response = connection.put("#{repo_url}/#{id}", attributes) do |req|
-          req.headers['Authorization'] = "Token #{token}"
+          req.headers['Authorization'] = "Token #{self.token}"
         end
         new_for(response)
       end
 
       def fetch_set(url, caller = nil)
         response = connection.get(url) do |req|
-          req.headers['Authorization'] = "Token #{token}"
+          req.headers['Authorization'] = "Token #{self.token}"
         end
         items    = JSON.parse(response.body).map { |item| new(item) }
         collection.new(items, caller)
@@ -46,7 +46,7 @@ module Phaser
 
       def fetch_one(url)
         response = connection.get(url) do |req|
-          req.headers['Authorization'] = "Token #{token}"
+          req.headers['Authorization'] = "Token #{self.token}"
         end
         new_for(response)
       end
@@ -57,7 +57,7 @@ module Phaser
 
       def destroy(id)
         connection.delete("#{repo_url}/#{id}") do |req|
-          req.headers['Authorization'] = "Token #{token}"
+          req.headers['Authorization'] = "Token #{self.token}"
         end
       end
 
