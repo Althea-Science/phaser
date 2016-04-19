@@ -5,6 +5,7 @@ module Phaser
   extend Configuration
 
   define_setting :api_url, 'http://localhost:3000'
+  define_setting :token
 end
 
 require 'phaser/base'
