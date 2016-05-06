@@ -16,16 +16,22 @@ module Phaser
       end
 
       def create_for(patient, attributes)
-        response = connection.post("#{repo_url}/#{patient.id}/attempts", attributes)
+        response = connection.post("#{repo_url}/#{patient.id}/attempts", attributes) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         new_for(response)
       end
 
       def destroy_for(patient, id)
-        connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}")
+        connection.delete("#{repo_url}/#{patient.id}/attempts/#{id}") do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
       end
 
       def move_to_phase(patient, id, attributes)
-        response = connection.put("#{repo_url}/#{patient.id}/attempts/#{id}/move_to_phase", attributes)
+        response = connection.put("#{repo_url}/#{patient.id}/attempts/#{id}/move_to_phase", attributes) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         new_for(response)
       end
 

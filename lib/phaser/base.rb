@@ -21,23 +21,31 @@ module Phaser
       end
 
       def create(attributes)
-        response = connection.post(repo_url, attributes)
+        response = connection.post(repo_url, attributes) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         new_for(response)
       end
 
       def update(id, attributes)
-        response = connection.put("#{repo_url}/#{id}", attributes)
+        response = connection.put("#{repo_url}/#{id}", attributes) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         new_for(response)
       end
 
       def fetch_set(url, caller = nil)
-        response = connection.get(url)
+        response = connection.get(url) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         items    = JSON.parse(response.body).map { |item| new(item) }
         collection.new(items, caller)
       end
 
       def fetch_one(url)
-        response = connection.get(url)
+        response = connection.get(url) do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
         new_for(response)
       end
 
@@ -46,7 +54,9 @@ module Phaser
       end
 
       def destroy(id)
-        connection.delete("#{repo_url}/#{id}")
+        connection.delete("#{repo_url}/#{id}") do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
       end
 
       def connection
@@ -73,6 +83,10 @@ module Phaser
         Object.const_get("Phaser::#{class_name}Collection")
       end
 
+    end
+
+    def save
+      self.class.create(attributes)
     end
 
     def to_partial_path
@@ -113,6 +127,10 @@ module Phaser
 
     def each
       set.map { |item| yield item }
+    end
+
+    def new(attributes)
+      collected_class.new(attributes)
     end
 
     def create(attributes)

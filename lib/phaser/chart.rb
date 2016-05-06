@@ -4,7 +4,9 @@ module Phaser
     class << self
 
       def create_multiple(attributes)
-        connection.post("#{repo_url}/multi", attributes)
+        connection.post("#{repo_url}/multi", attributes)do |req|
+          req.headers['Authorization'] = "Token #{Phaser.token}"
+        end
       end
 
     end
